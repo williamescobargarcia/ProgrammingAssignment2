@@ -1,28 +1,37 @@
 #I am sorry for the code I am sending, but I do not quite understand the question of the activity or its function. 
-#So I base my code given in the example, adding a matrix reversibility check
+## Put comments here that give an overall description of what your
+## functions do
+
+## Write a short comment describing this function
+
+## use the example from the exercise as a base, i just replaced the mean function with solve and rename 
+## the setmean and getmean arguments to setinv and getinv (inv which means inverse)
 
 makeCacheMatrix <- function(x = matrix()) {
-        
-        set <- function(y) 
-                x <<- y
-                
-                if (ncol(y)=nrow(y))   { 
-                        get <- function() x
-                        setinverse <- function(inverse) inv <<- inverse
-                        getinverse <- function() inv
-                        list(set = set, get = get,
-                             setinverse = setinverse,
-                             getinverse = getinverse)
-                        
-                } else { print("the matrix is not invertible")}
-                
-                
-                
+        m <- NULL 
+        set <- function(y){
+                x <<- y 
+                m <<- NULL
+        }
+        get <- function() x
+        setinv <- function(solve) m <<- solve
+        getinv <- function() m 
+        list(set = set, get = get, 
+             setinv = setinv,
+             getinv = getinv)
 }
 
-#Here I did not know what to place, the structure of the determinant and the transposed matrix, made this section impossible for
-#me. I know there are no excuses for this
+## I did the same in the function below
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+        m <- x$getinv()
+        if(!is.null(m)){
+                message("getting cached data")
+                return(m)
+        }
+        data <- x$get()
+        m <- solve(data, ...)
+        x$setinv(m)
+        m
 }
