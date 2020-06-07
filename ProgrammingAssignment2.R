@@ -1,4 +1,3 @@
-#I am sorry for the code I am sending, but I do not quite understand the question of the activity or its function. 
 ## Put comments here that give an overall description of what your
 ## functions do
 
